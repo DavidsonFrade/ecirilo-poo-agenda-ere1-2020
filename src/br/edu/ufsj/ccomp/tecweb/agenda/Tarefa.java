@@ -1,23 +1,24 @@
 package br.edu.ufsj.ccomp.tecweb.agenda;
 
-public class Tarefa {
-	
-	private String assunto;
-	private int horaInicio;
-	private int horaFim;
-	private int esforco;
-	private int prioridade;
+public class Tarefa extends Evento {
+		
+	private int esforco = 1;
+	private int prioridade = 1;
 	
 	public Tarefa(String assunto, int horaInicio, int horaFim, int esforco, int prioridade) {
-		this.assunto = assunto;
-		this.horaInicio = horaInicio;
-		this.horaFim = horaFim;
-		this.esforco = esforco;
-		this.prioridade = prioridade;
+		super(assunto, horaInicio, horaFim);
+		
+		if ( esforco >= 1 && esforco <= 5 ) {
+			this.esforco = esforco;
+		}
+		
+		if ( prioridade >= 1 && prioridade <= 10 ) {
+			this.prioridade = prioridade;
+		}
 	}
 	
 	public String imprimir() {
-		return "Assunto: " + this.assunto + " - Hora Inicio: " + this.horaInicio + " - Hora Fim: " + this.horaFim +
+		return super.imprimir() +
 				" - Esforco: " + this.esforco + " - Prioridade: " + this.prioridade;
 	}
 

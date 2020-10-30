@@ -90,7 +90,7 @@ public class Programa {
 		String assunto = Console.readLine();
 		
 		System.out.println("Hora Inicio: ");
-		String horaInicio = Console.readLine();
+		String horaInicio = Console.readLine();		
 		
 		System.out.println("Hora Fim: ");
 		String horaFim = Console.readLine();
@@ -107,7 +107,7 @@ public class Programa {
 				Integer.parseInt(prioridade));
 		
 		Agenda agenda = usuario.obterAgenda();
-		agenda.adicionarTarefa(tarefa);		
+		agenda.adicionarEvento(tarefa);		
 	}
 		
 	public static void imprimirTarefas() {
@@ -117,11 +117,13 @@ public class Programa {
 		
 		Usuario usuario = usuarios[codigoUsuario];
 		
-		Tarefa[] tarefas = usuario.obterAgenda().obterTarefas();
-		int numTarefas = usuario.obterAgenda().obterNumTarefas();
+		Evento[] eventos = usuario.obterAgenda().obterEventos();
+		int numEventos = usuario.obterAgenda().obterNumEventos();
 		
-		for ( int x = 0; x < numTarefas; x++ ) {
-			System.out.println(tarefas[x].imprimir());
+		for ( int x = 0; x < numEventos; x++ ) {
+			if ( eventos[x] instanceof Tarefa) {
+				System.out.println(eventos[x].imprimir());
+			}			
 		}
 		
 	}
@@ -154,7 +156,7 @@ public class Programa {
 				Boolean.parseBoolean(presenca));
 		
 		Agenda agenda = usuario.obterAgenda();
-		agenda.adicionarReuniao(reuniao);	
+		agenda.adicionarEvento(reuniao);	
 				
 	}
 	
@@ -165,11 +167,13 @@ public class Programa {
 		
 		Usuario usuario = usuarios[codigoUsuario];
 		
-		Reuniao[] reunioes = usuario.obterAgenda().obterReunioes();
-		int numReunioes = usuario.obterAgenda().obterNumReunioes();
+		Evento[] eventos = usuario.obterAgenda().obterEventos();
+		int numEventos = usuario.obterAgenda().obterNumEventos();
 		
-		for ( int x = 0; x < numReunioes; x++ ) {
-			System.out.println(reunioes[x].imprimir());
+		for ( int x = 0; x < numEventos; x++ ) {
+			if ( eventos[x] instanceof Reuniao) {
+				System.out.println(eventos[x].imprimir());
+			}			
 		}
 				
 	}
@@ -184,22 +188,12 @@ public class Programa {
 		System.out.println("Agenda do usuario - " + usuario.obterNome());
 		System.out.println("");
 		
-		System.out.println("Tarefas: ");
-		Tarefa[] tarefas = usuario.obterAgenda().obterTarefas();
-		int numTarefas = usuario.obterAgenda().obterNumTarefas();
+		System.out.println("Eventos: ");
+		Evento[] eventos = usuario.obterAgenda().obterEventos();
+		int numEventos = usuario.obterAgenda().obterNumEventos();
 		
-		for ( int x = 0; x < numTarefas; x++ ) {
-			System.out.println(tarefas[x].imprimir());
-		}
-			
-		System.out.println("");
-		
-		System.out.println("Reunioes: ");
-		Reuniao[] reunioes = usuario.obterAgenda().obterReunioes();
-		int numReunioes = usuario.obterAgenda().obterNumReunioes();
-		
-		for ( int x = 0; x < numReunioes; x++ ) {
-			System.out.println(reunioes[x].imprimir());
-		}		
+		for ( int x = 0; x < numEventos; x++ ) {
+			System.out.println(eventos[x].imprimir());
+		}					
 	}
 }
